@@ -1,0 +1,8 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+  android:shape="rectangle">
+  <solid android:color="@android:color/transparent" /> <!-- Optional: Set the color inside the border -->
+  <corners android:radius="8dp" />
+  <stroke
+    android:width="2dp"
+    android:color="@color/blurgrey" /> <!-- Set the color of the border -->
+</shape>

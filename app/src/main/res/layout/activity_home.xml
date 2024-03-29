@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:padding="24dp"
+  tools:context=".HomeActivity">
+  <!-- Profile Bar -->
+  <LinearLayout
+    android:id="@+id/profile_bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <ImageView
+      android:layout_width="64dp"
+      android:layout_height="64dp"
+      android:src="@drawable/profile_icon" />
+
+    <Space
+      android:layout_width="8dp"
+      android:layout_height="match_parent" />
+
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/profile_name"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+      <Space
+        android:layout_width="match_parent"
+        android:layout_height="4dp" />
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/profile_nim"
+        android:textSize="12sp" />
+    </LinearLayout>
+
+    <Space
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="1" />
+
+    <ImageView
+      android:layout_width="24dp"
+      android:layout_height="24dp"
+      android:src="@drawable/bell" />
+
+  </LinearLayout>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/profile_bar">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginVertical="12dp">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kehadiran"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+      <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rekap Absen"
+        android:textColor="@color/orange"
+        android:textSize="16dp" />
+    </LinearLayout>
+    <HorizontalScrollView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:scrollbars="none"
+      >
+      <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <!-- Card-->
+        <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@drawable/card_border"
+          android:fontFamily="@font/lexend"
+          android:orientation="vertical"
+          android:padding="16dp"
+          android:paddingEnd="32dp">
+
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <ImageView
+              android:layout_width="48dp"
+              android:layout_height="48dp"
+              android:background="@drawable/rounded_imageview"
+              android:padding="5dp"
+              android:src="@drawable/presence" />
+
+            <Space
+              android:layout_width="8dp"
+              android:layout_height="match_parent" />
+
+            <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Masuk"
+              android:textSize="16dp" />
+
+          </LinearLayout>
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:text="07:00"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tepat Waktu"
+            android:textSize="16dp" />
+          />
+        </LinearLayout>
+
+        <Space
+          android:layout_width="24dp"
+          android:layout_height="match_parent" />
+
+        <!-- Card-->
+        <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@drawable/card_border"
+          android:fontFamily="@font/lexend"
+          android:orientation="vertical"
+          android:padding="16dp"
+          android:paddingEnd="32dp">
+
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <ImageView
+              android:layout_width="48dp"
+              android:layout_height="48dp"
+              android:background="@drawable/rounded_imageview"
+              android:padding="5dp"
+              android:src="@drawable/presence" />
+
+            <Space
+              android:layout_width="8dp"
+              android:layout_height="match_parent" />
+
+            <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Masuk"
+              android:textSize="16dp" />
+
+          </LinearLayout>
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:text="07:00"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tepat Waktu"
+            android:textSize="16dp" />
+          />
+        </LinearLayout>
+      </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <Space
+      android:layout_width="match_parent"
+      android:layout_height="24dp" />
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/rounded_black80"
+      android:gravity="center"
+      android:orientation="vertical"
+      android:padding="24dp">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Izin Absen"
+        android:textColor="@color/blurgrey"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Isi form untuk meminta izin absen"
+        android:textColor="@color/blurgrey"
+        android:textSize="16dp" />
+
+      <Space
+        android:layout_width="match_parent"
+        android:layout_height="24dp" />
+
+      <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:text="Ajukan Izin"
+        android:textColor="@color/black100"
+        android:textStyle="bold" />
+
+    </LinearLayout>
+  </LinearLayout>
+
+  <Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Tekan untuk Presensi Masuk"
+    android:textColor="@color/white"
+    android:textStyle="bold"
+    android:paddingVertical="16dp"
+    android:textSize="16dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
