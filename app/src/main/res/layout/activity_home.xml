@@ -74,7 +74,7 @@
       <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Kehadiran"
+        android:text="Kehadiran Hari Ini"
         android:textSize="16dp"
         android:textStyle="bold" />
 
@@ -102,7 +102,7 @@
 
         <!-- Card-->
         <LinearLayout
-          android:layout_width="wrap_content"
+          android:layout_width="200dp"
           android:layout_height="wrap_content"
           android:background="@drawable/card_border"
           android:fontFamily="@font/lexend"
@@ -138,14 +138,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
-            android:text="07:00"
+            android:text="09:30"
             android:textSize="24dp"
             android:textStyle="bold" />
 
           <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tepat Waktu"
+            android:text="Pemprograman Mobile"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:textSize="16dp" />
           />
         </LinearLayout>
@@ -192,14 +194,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
-            android:text="07:00"
+            android:text="13:00"
             android:textSize="24dp"
             android:textStyle="bold" />
 
           <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tepat Waktu"
+            android:text="Praktikum Pemprograman Mobile"
             android:textSize="16dp" />
           />
         </LinearLayout>

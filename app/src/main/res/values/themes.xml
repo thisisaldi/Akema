@@ -5,6 +5,7 @@
     <item name="android:windowBackground">@color/white</item>
     <item name="fontFamily">@font/manrope</item>
     <item name="android:textColor">@color/black</item>
+    <item name="android:statusBarColor">@color/white</item>
   </style>
 
   <style name="Theme.Akema" parent="Base.Theme.Akema" />
