@@ -4,13 +4,14 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:padding="24dp"
   tools:context=".HomeActivity">
   <!-- Profile Bar -->
   <LinearLayout
     android:id="@+id/profile_bar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="24dp"
+    android:layout_marginTop="24dp"
     android:gravity="center_vertical"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
@@ -18,7 +19,8 @@
     <ImageView
       android:layout_width="64dp"
       android:layout_height="64dp"
-      android:src="@drawable/profile_icon" />
+      android:src="@drawable/profile_icon"
+      android:contentDescription="Profile Icon" />
 
     <Space
       android:layout_width="8dp"
@@ -62,6 +64,7 @@
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="24dp"
     android:orientation="vertical"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/profile_bar">
@@ -75,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Kehadiran Hari Ini"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
       <Space
@@ -88,17 +91,17 @@
         android:layout_height="wrap_content"
         android:text="Rekap Absen"
         android:textColor="@color/orange"
-        android:textSize="16dp" />
+        android:textSize="16sp" />
     </LinearLayout>
+
     <HorizontalScrollView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:scrollbars="none"
-      >
+      android:scrollbars="none">
+
       <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <!-- Card-->
         <LinearLayout
@@ -108,7 +111,8 @@
           android:fontFamily="@font/lexend"
           android:orientation="vertical"
           android:padding="16dp"
-          android:paddingEnd="32dp">
+          android:paddingEnd="32dp"
+          tools:ignore="RtlSymmetry">
 
           <LinearLayout
             android:layout_width="match_parent"
@@ -118,9 +122,10 @@
             <ImageView
               android:layout_width="48dp"
               android:layout_height="48dp"
-              android:background="@drawable/rounded_imageview"
+              android:background="@drawable/rounded_bg"
               android:padding="5dp"
-              android:src="@drawable/presence" />
+              android:src="@drawable/presence"
+              app:backgroundTint="@color/blurgrey" />
 
             <Space
               android:layout_width="8dp"
@@ -130,7 +135,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="Masuk"
-              android:textSize="16dp" />
+              android:textSize="16sp" />
 
           </LinearLayout>
 
@@ -139,16 +144,16 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
             android:text="09:30"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
           <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pemprograman Mobile"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textSize="16dp" />
+            android:text="Pemprograman Mobile"
+            android:textSize="16sp" />
           />
         </LinearLayout>
 
@@ -158,13 +163,14 @@
 
         <!-- Card-->
         <LinearLayout
-          android:layout_width="wrap_content"
+          android:layout_width="200dp"
           android:layout_height="wrap_content"
           android:background="@drawable/card_border"
           android:fontFamily="@font/lexend"
           android:orientation="vertical"
           android:padding="16dp"
-          android:paddingEnd="32dp">
+          android:paddingEnd="32dp"
+          tools:ignore="RtlSymmetry">
 
           <LinearLayout
             android:layout_width="match_parent"
@@ -174,9 +180,10 @@
             <ImageView
               android:layout_width="48dp"
               android:layout_height="48dp"
-              android:background="@drawable/rounded_imageview"
+              android:background="@drawable/rounded_bg"
               android:padding="5dp"
-              android:src="@drawable/presence" />
+              android:src="@drawable/presence"
+              app:backgroundTint="@color/blurgrey" />
 
             <Space
               android:layout_width="8dp"
@@ -186,7 +193,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="Masuk"
-              android:textSize="16dp" />
+              android:textSize="16sp" />
 
           </LinearLayout>
 
@@ -195,16 +202,19 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
             android:text="13:00"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
           <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="Praktikum Pemprograman Mobile"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
           />
         </LinearLayout>
+
       </LinearLayout>
 
     </HorizontalScrollView>
@@ -216,7 +226,7 @@
     <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@drawable/rounded_black80"
+      android:background="@drawable/rounded_bg"
       android:gravity="center"
       android:orientation="vertical"
       android:padding="24dp">
@@ -226,7 +236,7 @@
         android:layout_height="wrap_content"
         android:text="Izin Absen"
         android:textColor="@color/blurgrey"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
       <TextView
@@ -234,31 +244,57 @@
         android:layout_height="wrap_content"
         android:text="Isi form untuk meminta izin absen"
         android:textColor="@color/blurgrey"
-        android:textSize="16dp" />
+        android:textSize="16sp" />
 
       <Space
         android:layout_width="match_parent"
         android:layout_height="24dp" />
 
       <Button
+        style="@style/SecondaryButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:text="Ajukan Izin"
+        android:text="@string/pengajuan_izin"
         android:textColor="@color/black100"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:backgroundTint="@color/white" />
 
     </LinearLayout>
   </LinearLayout>
 
   <Button
+    android:id="@+id/presence_button"
+    style="@style/PrimaryButton"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Tekan untuk Presensi Masuk"
-    android:textColor="@color/white"
-    android:textStyle="bold"
+    android:layout_marginHorizontal="24dp"
+    android:layout_marginVertical="24dp"
     android:paddingVertical="16dp"
+    android:text="Tekan untuk Presensi Masuk"
     android:textSize="16dp"
-    app:layout_constraintBottom_toBottomOf="parent"
+    app:backgroundTint="@color/orange"
+    app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
     app:layout_constraintStart_toStartOf="parent" />
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/blurgrey"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+    />
+  <com.google.android.material.bottomnavigation.BottomNavigationView
+    android:id="@+id/bottom_navigation"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@color/white"
+    android:foregroundGravity="center_vertical"
+    app:itemBackground="@color/white"
+    app:itemIconSize="32dp"
+    app:itemActiveIndicatorStyle="@color/white"
+    app:itemTextAppearanceActive="@color/white"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:menu="@menu/bottom_navigation_menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
