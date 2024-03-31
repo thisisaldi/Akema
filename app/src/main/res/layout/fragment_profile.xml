@@ -1,0 +1,97 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fragment.ProfileFragment">
+
+    <!-- Foto Profil -->
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/user_profile"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp" />
+
+    <!-- Nama Lengkap -->
+    <TextView
+        android:id="@+id/full_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/manrope"
+        android:gravity="center_horizontal"
+        android:text="@string/profile_name"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- Status Mahasiswa -->
+    <TextView
+        android:id="@+id/student_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/manrope"
+        android:gravity="center_horizontal"
+        android:text="@string/profile_status"
+        android:textColor="#636E72"
+        android:textSize="18sp" />
+
+    <!-- Tombol Edit Profile -->
+    <Button
+        android:id="@+id/edit_profile_button"
+        style="@style/PrimaryButton"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingVertical="16dp"
+        android:text="Edit Profle"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        app:backgroundTint="@color/orange" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <!-- Profil Lengkap -->
+            <Button
+                android:id="@+id/full_profile_button"
+                style="@style/ButtonWithIcon"
+                android:drawableLeft="@drawable/profile_id_card"
+                android:gravity=""
+                android:text="Profil Lengkap"
+                android:drawableRight="@drawable/ic_arrow_forward"/>
+
+            <!-- Change Password -->
+            <Button
+                android:id="@+id/change_password_button"
+                style="@style/ButtonWithIcon"
+                android:layout_marginTop="16dp"
+                android:drawableLeft="@drawable/profile_lock"
+                android:gravity=""
+                android:text="Ganti Password"
+                android:drawableRight="@drawable/ic_arrow_forward"/>
+
+            <!-- Logout -->
+            <Button
+                android:id="@+id/logout_button"
+                style="@style/ButtonWithIcon"
+                android:layout_marginTop="16dp"
+                android:drawableLeft="@drawable/profile_logout"
+                android:text="Log Out"
+                android:gravity=""
+                android:textColor="#E74C3C" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
