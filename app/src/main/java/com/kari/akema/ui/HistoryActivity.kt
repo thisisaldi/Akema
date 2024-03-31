@@ -5,6 +5,7 @@ import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.CalendarView
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 
@@ -16,6 +17,9 @@ class HistoryActivity : AppCompatActivity(), View.OnClickListener {
 
         val backButton: ImageButton = findViewById(R.id.history_back_button)
         backButton.setOnClickListener(this)
+
+        val calendarView: CalendarView = findViewById(R.id.presence_history_calendar)
+        calendarView.date = System.currentTimeMillis()
     }
 
     override fun onClick(v: View) {

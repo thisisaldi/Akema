@@ -31,4 +31,16 @@
     <item name="android:textSize">24sp</item>
     <item name="android:textStyle">bold</item>
   </style>
+  <style name="CalenderViewCustom" parent="Theme.AppCompat">
+    <item name="colorControlActivated">@color/orange</item>
+    <item name="android:textColorPrimary">@color/black100</item>
+  </style>
+
+  <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+    <item name="android:textColor">@color/black100</item>
+  </style>
+
+  <style name="CalenderViewDateCustomText" >
+    <item name="android:textColor">@drawable/calendar_date_selector</item>
+  </style>
 </resources>
