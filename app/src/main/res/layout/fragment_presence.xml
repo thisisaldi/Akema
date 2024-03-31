@@ -6,7 +6,6 @@
   android:orientation="vertical"
   android:padding="40dp">
 
-
   <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -137,11 +136,11 @@
   <Button
     android:id="@+id/presence_button"
     style="@style/PrimaryButton"
-    app:backgroundTint="@color/orange"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingVertical="16dp"
     android:text="Hadir"
-    android:textSize="16dp" />
+    android:textSize="16dp"
+    app:backgroundTint="@color/orange" />
 
 </LinearLayout>
