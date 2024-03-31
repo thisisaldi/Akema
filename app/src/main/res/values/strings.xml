@@ -2,7 +2,11 @@
   <string name="app_name">Akema</string>
   <string name="profile_name">Muhammad Irsyad Purnama</string>
   <string name="profile_nim">2110511069</string>
+  <string name="angkatan">2021</string>
+  <string name="profile_status">Mahasiswa</string>
+  <string name="email">m.irsyad.abdurrahman@example.com</string>
+  <string name="alamat">Kec. Margahayu, Jl. Venus No 33</string>
+  <string name="pengajuan_izin">Ajukan Izin</string>
   <!-- TODO: Remove or change this placeholder text -->
   <string name="hello_blank_fragment">Hello blank fragment</string>
-  <string name="pengajuan_izin">Ajukan Izin</string>
 </resources>

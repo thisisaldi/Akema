@@ -4,7 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".HomeActivity">
+  >
   <!-- Profile Bar -->
   <LinearLayout
     android:id="@+id/profile_bar"
@@ -19,8 +19,8 @@
     <ImageView
       android:layout_width="64dp"
       android:layout_height="64dp"
-      android:src="@drawable/profile_icon"
-      android:contentDescription="Profile Icon" />
+      android:contentDescription="Profile Icon"
+      android:src="@drawable/profile_icon" />
 
     <Space
       android:layout_width="8dp"
@@ -62,6 +62,7 @@
   </LinearLayout>
 
   <LinearLayout
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="24dp"
@@ -109,7 +110,6 @@
           android:layout_width="200dp"
           android:layout_height="wrap_content"
           android:background="@drawable/card_border"
-          android:backgroundTint="@color/blurgrey"
           android:fontFamily="@font/lexend"
           android:orientation="vertical"
           android:padding="16dp"
@@ -168,7 +168,6 @@
           android:layout_width="200dp"
           android:layout_height="wrap_content"
           android:background="@drawable/card_border"
-          android:backgroundTint="@color/blurgrey"
           android:fontFamily="@font/lexend"
           android:orientation="vertical"
           android:padding="16dp"
@@ -265,39 +264,24 @@
     </LinearLayout>
   </LinearLayout>
 
-  <Button
-    android:id="@+id/presence_button"
-    style="@style/PrimaryButton"
+  <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="24dp"
-    android:layout_marginVertical="24dp"
-    android:paddingVertical="16dp"
-    android:text="Tekan untuk Presensi Masuk"
-    android:textSize="16dp"
-    app:backgroundTint="@color/orange"
-    app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
-    app:layout_constraintStart_toStartOf="parent" />
-  <View
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:background="@color/blurgrey"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
-    />
-  <com.google.android.material.bottomnavigation.BottomNavigationView
-    android:id="@+id/bottom_navigation"
-    android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:background="@color/white"
-    android:foregroundGravity="center_vertical"
-    app:itemBackground="@color/white"
-    app:itemIconSize="32dp"
-    app:itemActiveIndicatorStyle="@color/white"
-    app:itemTextAppearanceActive="@color/white"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:menu="@menu/bottom_navigation_menu" />
+    app:layout_constraintBottom_toBottomOf="parent">
+
+    <Button
+      android:id="@+id/presence_button"
+      style="@style/PrimaryButton"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="24dp"
+      android:layout_marginVertical="24dp"
+      android:layout_marginBottom="24dp"
+      android:paddingVertical="16dp"
+      android:text="Tekan untuk Presensi Masuk"
+      android:textSize="16dp"
+      app:backgroundTint="@color/orange"
+      app:layout_constraintBottom_toBottomOf="parent" />
+  </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

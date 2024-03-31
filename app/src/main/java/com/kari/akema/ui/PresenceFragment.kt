@@ -1,10 +1,11 @@
-package com.kari.akema
+package com.kari.akema.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.kari.akema.R
 
 class PresenceFragment : BottomSheetDialogFragment() {
 

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.EditProfileActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <!-- Tombol Back -->
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="Back Button"
+            android:src="@drawable/ic_arrow_back" />
+
+        <!-- Teks "Profil Lengkap" -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Profil Lengkap"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+
+    <!-- Foto Profil -->
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/user_profile" />
+
+    <LinearLayout
+        android:id="@+id/EditProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="25dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="25dp">
+
+        <!-- Subjudul untuk Nama -->
+        <TextView
+            style="@style/EditInputSub"
+            android:text="Nama" />
+
+        <!-- Kotak Input untuk Nama -->
+        <EditText
+            android:id="@+id/editTextNama"
+            style="@style/EditInput"
+            android:inputType="text"
+            android:text="@string/profile_name" />
+
+        <!-- Subjudul untuk Email -->
+        <TextView
+            style="@style/EditInputSub"
+            android:text="Email" />
+
+        <!-- Kotak Input untuk Email -->
+        <EditText
+            android:id="@+id/editTextEmail"
+            style="@style/EditInput"
+            android:inputType="textEmailAddress"
+            android:text="@string/email" />
+
+        <!-- Subjudul untuk Alamat -->
+        <TextView
+            style="@style/EditInputSub"
+            android:text="Alamat" />
+
+        <!-- Kotak Input untuk Alamat -->
+        <EditText
+            android:id="@+id/editTextAlamat"
+            style="@style/EditInput"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:text="@string/alamat" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <Button
+            android:id="@+id/button_perbarui"
+            style="@style/PrimaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginVertical="25dp"
+            android:layout_marginHorizontal="25dp"
+            android:text="Perbarui"
+            android:textSize="20dp"
+            app:backgroundTint="@color/orange" />
+    </LinearLayout>
+</LinearLayout>
