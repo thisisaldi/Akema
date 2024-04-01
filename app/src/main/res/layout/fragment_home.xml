@@ -3,8 +3,7 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  >
+  android:layout_height="match_parent">
   <!-- Profile Bar -->
   <LinearLayout
     android:id="@+id/profile_bar"
@@ -54,9 +53,11 @@
       android:layout_height="wrap_content"
       android:layout_weight="1" />
 
-    <ImageView
+    <ImageButton
+      android:id="@+id/notification_button"
       android:layout_width="24dp"
       android:layout_height="24dp"
+      android:background="@color/white"
       android:src="@drawable/bell" />
 
   </LinearLayout>
@@ -110,6 +111,7 @@
           android:layout_width="200dp"
           android:layout_height="wrap_content"
           android:background="@drawable/card_border"
+          android:backgroundTint="@color/blurgrey"
           android:fontFamily="@font/lexend"
           android:orientation="vertical"
           android:padding="16dp"
@@ -168,6 +170,7 @@
           android:layout_width="200dp"
           android:layout_height="wrap_content"
           android:background="@drawable/card_border"
+          android:backgroundTint="@color/blurgrey"
           android:fontFamily="@font/lexend"
           android:orientation="vertical"
           android:padding="16dp"
@@ -253,6 +256,7 @@
         android:layout_height="24dp" />
 
       <Button
+        android:id="@+id/izin_button"
         style="@style/SecondaryButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

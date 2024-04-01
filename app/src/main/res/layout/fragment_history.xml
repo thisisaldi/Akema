@@ -179,6 +179,45 @@
         android:dateTextAppearance="@style/CalenderViewDateCustomText"
         android:theme="@style/CalenderViewCustom"
         android:weekDayTextAppearance="@style/CalenderViewWeekCustomText" />
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="12dp">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Aktivitas"
+          android:textSize="16sp"
+          android:textStyle="bold" />
+
+        <Space
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1" />
+
+        <TextView
+          android:id="@+id/all_activity_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Lihat Semua"
+          android:textColor="@color/orange"
+          android:textSize="16sp" />
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="160dp"
+          android:textAlignment="center"
+          android:gravity="center"
+          android:text="Aktivitas anda masih kosong :(" />
+      </LinearLayout>
     </LinearLayout>
   </ScrollView>
 

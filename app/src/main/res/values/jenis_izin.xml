@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="jenis_izin">
+    <item>Urusan Keluarga</item>
+    <item>Dispensasi Akademik</item>
+    <item>Pribadi</item>
+    <item>Keadaan Darurat</item>
+  </string-array>
+</resources>

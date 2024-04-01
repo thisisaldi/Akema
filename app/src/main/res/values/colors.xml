@@ -9,10 +9,15 @@
   <color name="green">#A3D139</color>
   <color name="yellow">#F0B559</color>
 
-  <color name="primary">  #E67E22</color>
-  <color name="primary2"> #F0B559</color>
-  <color name="black100"> #313638</color>
-  <color name="black80">  #636E72</color>
-  <color name="black60">  #B2BEC3</color>
-  <color name="black40">  #DFE6E9</color>
+  <color name="primary">#E67E22</color>
+  <color name="primary2">#F0B559</color>
+  <color name="black100">#313638</color>
+  <color name="black80">#636E72</color>
+  <color name="black60">#B2BEC3</color>
+  <color name="black40">#DFE6E9</color>
+  <color name="light_blue_600">#FF039BE5</color>
+  <color name="light_blue_900">#FF01579B</color>
+  <color name="light_blue_A200">#FF40C4FF</color>
+  <color name="light_blue_A400">#FF00B0FF</color>
+  <color name="black_overlay">#66000000</color>
 </resources>
