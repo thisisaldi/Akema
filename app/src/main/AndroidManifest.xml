@@ -26,8 +26,17 @@
         android:theme="@style/Theme.Akema"
         tools:targetApi="31">
         <activity
+            android:name=".ui.GantiPasswordActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ui.EditProfileActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ui.ProfileLengkapActivity"
+            android:exported="false"/>
+        <activity
             android:name=".ui.MainActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".ui.LoginActivity"
             android:exported="true"

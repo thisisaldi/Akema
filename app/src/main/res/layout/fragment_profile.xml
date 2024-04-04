@@ -64,7 +64,7 @@
 
             <!-- Profil Lengkap -->
             <Button
-                android:id="@+id/full_profile_button"
+                android:id="@+id/button_profile_lengkap"
                 style="@style/ButtonWithIcon"
                 android:drawableLeft="@drawable/profile_id_card"
                 android:gravity=""

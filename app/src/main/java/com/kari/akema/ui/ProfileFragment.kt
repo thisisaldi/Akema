@@ -24,11 +24,26 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        val buttonLogout =  view.findViewById<Button>(R.id.logout_button)
+        val buttonLogout = view.findViewById<Button>(R.id.logout_button)
+        val buttonProfileLengkap = view.findViewById<Button>(R.id.button_profile_lengkap)
+        val buttonChangePassword = view.findViewById<Button>(R.id.change_password_button)
+        val buttonEditProfile = view.findViewById<Button>(R.id.edit_profile_button)
 
         buttonLogout.setOnClickListener {
-            val message : String? = "Apakah anda ingin keluar?"
+            val message: String? = "Apakah anda ingin keluar?"
             showCustomDialogBox(message)
+        }
+
+        buttonProfileLengkap.setOnClickListener {
+            startActivity(Intent(requireContext(), ProfileLengkapActivity::class.java))
+        }
+
+        buttonChangePassword.setOnClickListener {
+            startActivity(Intent(requireContext(), GantiPasswordActivity::class.java))
+        }
+
+        buttonEditProfile.setOnClickListener {
+            startActivity(Intent(requireContext(), EditProfileActivity::class.java))
         }
 
         return view
@@ -41,13 +56,13 @@ class ProfileFragment : Fragment() {
         dialog.setContentView(R.layout.popout_log_out)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        val tvMessage : TextView = dialog.findViewById(R.id.tvMessage)
-        val btnLogout : Button = dialog.findViewById(R.id.buttonLogout)
-        val btnBatal : Button = dialog.findViewById(R.id.buttonBatal)
+        val tvMessage: TextView = dialog.findViewById(R.id.tvMessage)
+        val btnLogout: Button = dialog.findViewById(R.id.buttonLogout)
+        val btnBatal: Button = dialog.findViewById(R.id.buttonBatal)
 
         tvMessage.text = message
 
-        btnLogout.setOnClickListener{
+        btnLogout.setOnClickListener {
             Toast.makeText(requireContext(), "Anda Berhasil Logout!", Toast.LENGTH_LONG).show()
             dialog.dismiss()
         }
