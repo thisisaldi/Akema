@@ -1,6 +1,5 @@
 package com.kari.akema.ui
 
-import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Typeface.BOLD
 import android.os.Bundle
