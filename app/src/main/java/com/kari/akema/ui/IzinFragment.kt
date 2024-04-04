@@ -1,20 +1,16 @@
 package com.kari.akema.ui
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import android.widget.Spinner
-import android.widget.TextView
 import androidx.camera.lifecycle.ProcessCameraProvider
 import com.google.common.util.concurrent.ListenableFuture
 import com.kari.akema.R
-import com.kari.akema.adapter.HintAdapter
 
 class IzinFragment : Fragment() {
     private lateinit var view: View
@@ -50,7 +46,7 @@ class IzinFragment : Fragment() {
         backButton.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()?.apply {
                 setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
-                replace(R.id.nav_host_fragment, HomeFragment())
+                replace(R.id.nav_host_fragment, PresensiFragment())
                 addToBackStack(null)
                 commit()
             }

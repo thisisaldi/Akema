@@ -14,8 +14,9 @@
             val navView: BottomNavigationView = findViewById(R.id.bottom_navigation)
             navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
             bottomNavigationViewInitialize()
+
             // Default fragment when the activity starts
-            replaceFragment(HomeFragment())
+            replaceFragment(PresensiFragment())
         }
 
         private fun bottomNavigationViewInitialize() {
@@ -37,7 +38,8 @@
         private val onNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
-                    R.id.menu_presence -> replaceFragment(HomeFragment())
+                    // R.id.menu_home -> replaceFragment(HomeFragment())
+                    R.id.menu_presence -> replaceFragment(PresensiFragment())
                     R.id.menu_profile -> replaceFragment(ProfileFragment())
 
                     else ->{

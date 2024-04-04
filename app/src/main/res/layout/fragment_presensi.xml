@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+  <!-- Profile Bar -->
+  <LinearLayout
+    android:id="@+id/profile_bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="24dp"
+    android:layout_marginTop="24dp"
+    android:gravity="center_vertical"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <ImageView
+      android:layout_width="64dp"
+      android:layout_height="64dp"
+      android:contentDescription="Profile Icon"
+      android:src="@drawable/profile_icon" />
+
+    <Space
+      android:layout_width="8dp"
+      android:layout_height="match_parent" />
+
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/profile_name"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+      <Space
+        android:layout_width="match_parent"
+        android:layout_height="4dp" />
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/profile_nim"
+        android:textSize="12sp" />
+    </LinearLayout>
+
+    <Space
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="1" />
+
+    <ImageButton
+      android:id="@+id/notification_button"
+      android:layout_width="24dp"
+      android:layout_height="24dp"
+      android:background="@color/white"
+      android:src="@drawable/bell" />
+
+  </LinearLayout>
+
+  <LinearLayout
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="24dp"
+    android:orientation="vertical"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/profile_bar">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginVertical="12dp">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kehadiran Hari Ini"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+      <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+      <TextView
+        android:id="@+id/presence_history_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rekap Absen"
+        android:textColor="@color/orange"
+        android:textSize="16sp" />
+    </LinearLayout>
+
+    <HorizontalScrollView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:scrollbars="none">
+
+      <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <!-- Card-->
+        <LinearLayout
+          android:layout_width="200dp"
+          android:layout_height="wrap_content"
+          android:background="@drawable/card_border"
+          android:backgroundTint="@color/blurgrey"
+          android:fontFamily="@font/lexend"
+          android:orientation="vertical"
+          android:padding="16dp"
+          android:paddingEnd="32dp"
+          tools:ignore="RtlSymmetry">
+
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <ImageView
+              android:layout_width="48dp"
+              android:layout_height="48dp"
+              android:background="@drawable/rounded_bg"
+              android:padding="5dp"
+              android:src="@drawable/presence"
+              app:backgroundTint="@color/blurgrey" />
+
+            <Space
+              android:layout_width="8dp"
+              android:layout_height="match_parent" />
+
+            <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Masuk"
+              android:textSize="16sp" />
+
+          </LinearLayout>
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:text="09:30"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Pemprograman Mobile"
+            android:textSize="16sp" />
+          />
+        </LinearLayout>
+
+        <Space
+          android:layout_width="24dp"
+          android:layout_height="match_parent" />
+
+        <!-- Card-->
+        <LinearLayout
+          android:layout_width="200dp"
+          android:layout_height="wrap_content"
+          android:background="@drawable/card_border"
+          android:backgroundTint="@color/blurgrey"
+          android:fontFamily="@font/lexend"
+          android:orientation="vertical"
+          android:padding="16dp"
+          android:paddingEnd="32dp"
+          tools:ignore="RtlSymmetry">
+
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <ImageView
+              android:layout_width="48dp"
+              android:layout_height="48dp"
+              android:background="@drawable/rounded_bg"
+              android:padding="5dp"
+              android:src="@drawable/presence"
+              app:backgroundTint="@color/blurgrey" />
+
+            <Space
+              android:layout_width="8dp"
+              android:layout_height="match_parent" />
+
+            <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Masuk"
+              android:textSize="16sp" />
+
+          </LinearLayout>
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:text="13:00"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Praktikum Pemprograman Mobile"
+            android:textSize="16sp" />
+          />
+        </LinearLayout>
+
+      </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <Space
+      android:layout_width="match_parent"
+      android:layout_height="24dp" />
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/rounded_bg"
+      android:gravity="center"
+      android:orientation="vertical"
+      android:padding="24dp">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Izin Absen"
+        android:textColor="@color/blurgrey"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Isi form untuk meminta izin absen"
+        android:textColor="@color/blurgrey"
+        android:textSize="16sp" />
+
+      <Space
+        android:layout_width="match_parent"
+        android:layout_height="24dp" />
+
+      <Button
+        android:id="@+id/izin_button"
+        style="@style/SecondaryButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pengajuan_izin"
+        android:textColor="@color/black100"
+        android:textStyle="bold"
+        app:backgroundTint="@color/white" />
+
+    </LinearLayout>
+  </LinearLayout>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toBottomOf="parent">
+
+    <Button
+        android:id="@+id/presence_button"
+        style="@style/PrimaryButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginVertical="24dp"
+        android:layout_marginBottom="24dp"
+        android:paddingVertical="16dp"
+        android:text="Tekan untuk Presensi Masuk"
+        android:textSize="16dp"
+        app:backgroundTint="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent" />
+  </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
