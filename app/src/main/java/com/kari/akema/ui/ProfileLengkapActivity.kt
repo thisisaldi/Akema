@@ -50,7 +50,5 @@ class ProfileLengkapActivity : AppCompatActivity() {
         // Change button appearance based on selection
         pribadiBtn.setBackgroundColor(if (fragment is PribadiFragment) Color.parseColor("#E67E22") else Color.parseColor("#DFE6E9"))
         pribadiBtn.setTextColor(if (fragment is PribadiFragment) Color.WHITE else Color.parseColor("#E67E22"))
-        datasiswaBtn.setBackgroundColor(if (fragment is DataSiswaFragment) Color.parseColor("#E67E22") else Color.parseColor("#DFE6E9"))
-        datasiswaBtn.setTextColor(if (fragment is DataSiswaFragment) Color.WHITE else Color.parseColor("#E67E22"))
     }
 }

@@ -5,8 +5,9 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="312dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingHorizontal="24dp"
         android:orientation="vertical">
 
         <!--  Nama Lengkap  -->
