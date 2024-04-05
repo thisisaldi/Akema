@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.kari.akema.R
 
@@ -30,7 +29,7 @@ class ProfileFragment : Fragment() {
         val buttonEditProfile = view.findViewById<Button>(R.id.edit_profile_button)
 
         buttonLogout.setOnClickListener {
-            val message: String? = "Apakah anda ingin keluar?"
+            val message: String = "Apakah anda ingin keluar?"
             showCustomDialogBox(message)
         }
 
