@@ -63,8 +63,7 @@ class ProfileFragment : Fragment() {
         tvMessage.text = message
 
         btnLogout.setOnClickListener {
-            Toast.makeText(requireContext(), "Anda Berhasil Logout!", Toast.LENGTH_LONG).show()
-            dialog.dismiss()
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
         }
 
         btnBatal.setOnClickListener {
