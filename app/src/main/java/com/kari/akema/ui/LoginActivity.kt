@@ -16,6 +16,8 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.kari.akema.R
 
 
@@ -24,6 +26,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.login)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
         displayTextViewInitialize()
         displayRegisterInitialize()
@@ -51,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun displayRegisterInitialize() {
-        val tvRegister : TextView = findViewById(R.id.tv_register)
+        val tvRegister : TextView = findViewById(R.id.tv_redirect_register)
         val text = SpannableStringBuilder("Belum punya akun? Daftar")
         val color = ResourcesCompat.getColor(getResources(), R.color.orange, null)
 
@@ -62,7 +69,9 @@ class LoginActivity : AppCompatActivity() {
 
         val clickSpan: ClickableSpan = object : ClickableSpan() {
             override fun onClick(p0: View) {
-                Toast.makeText(this@LoginActivity, "First Clickable Text", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }
 
@@ -75,8 +84,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun listenLoginButton() {
-        val btnLogin : Button = findViewById(R.id.btn_login)
-
+        val btnLogin : Button = findViewById(R.id.btn_submit_login)
         btnLogin.setOnClickListener{
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
             startActivity(intent)
