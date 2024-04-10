@@ -3,9 +3,7 @@
 ## About
 An Android mobile application for efficient attendance system.
 
-## Screenshots
-![Screenshot 1](screenshots/screenshot1.png)
-![Screenshot 2](screenshots/screenshot2.png)
+
 
 ## Installation
 To run this application, follow these steps:
@@ -22,3 +20,6 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (`git push origin feature/fooBar`).
 5. Create a new Pull Request.
 
+## Screenshots
+![Login Page](screenshots/screenshot1.png)
+![Presence Page](screenshots/screenshot2.png)
