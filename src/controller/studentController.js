@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const Student = require("../model/studentModel");
+const { Student } = require("../model/models");
 const getToken = require('../util/token');
 const jwt = require("jsonwebtoken");
 
@@ -7,14 +7,14 @@ const login = async (req, res, next) => {
   try {
     const { nim, password } = req.body;
 
-    let student = await Student.findOne({ nim })
-    student = student?.toObject();
+    const student = await Student.findOne({ nim })
+    const studentData = student?.toObject();
     
     if (student !== undefined) {
-      const verify = await bcrypt.compare(password, student.password);
+      const verify = await bcrypt.compare(password, studentData.password);
       
       if(verify) {
-        const token = getToken(student.nim)
+        const token = getToken(studentData.nim)
         res.cookie('token', token, {
           withCredentials: true,
           httpOnly: false,
@@ -77,7 +77,45 @@ const logout = async(req, res, next) => {
   }
 };
 
+const getStudentData = (req, res) => {
+  try {
+    const token = req.cookies.token;
+
+    if (token) {
+      jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
+        
+        if (err) {
+          return res.status(401).json({
+            status: "Unauthorized",
+            data: err,
+            message: "Please login!"
+          })
+        }
+
+        const student = await Student.findOne({nim: data.nim}).select("-password");
+        const studentData = student?.toObject();
+
+        return res.status(200).json({
+          status: "OK",
+          data: studentData
+        });
+      });
+    } else {
+      return res.status(401).json({
+        status: "Unauthorized",
+        message: "Please login!"
+      })
+    }
+  } catch (error) {
+    return res.status(500).json({
+      status: "Internal Server Error",
+      message: error.toString(),
+    });
+  }
+};
+
 module.exports = {
   login,
-  logout
+  logout,
+  getStudentData,
 }
