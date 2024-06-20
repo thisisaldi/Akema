@@ -3,7 +3,7 @@
     <string name="profile_name"></string>
     <string name="profile_nim"></string>
     <string name="angkatan"></string>
-    <string name="profile_status"></string>
+    <string name="profile_status">Aktif</string>
     <string name="email"></string>
     <string name="alamat"></string>
     <string name="pengajuan_izin">Ajukan Izin</string>

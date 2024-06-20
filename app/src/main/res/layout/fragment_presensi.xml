@@ -31,6 +31,7 @@
       android:orientation="vertical">
 
       <TextView
+        android:id="@+id/text_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/profile_name"
@@ -42,6 +43,7 @@
         android:layout_height="4dp" />
 
       <TextView
+        android:id="@+id/text_nim"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/profile_nim"

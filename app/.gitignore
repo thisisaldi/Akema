@@ -1,2 +1,2 @@
 /build
-*.crt
+**/*.crt

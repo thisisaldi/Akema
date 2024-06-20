@@ -26,8 +26,6 @@ class MainActivity : AppCompatActivity() {
         apiClient = ApiClient(this)
         sessionManager = SessionManager(this)
 
-        fetchStudentData()
-
         val navView: BottomNavigationView = findViewById(R.id.bottom_navigation)
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
@@ -65,30 +63,4 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-    private fun fetchStudentData() {
-        apiClient.getApiService().getStudents()
-            .enqueue(object : Callback<StudentDataResponse> {
-                override fun onFailure(call: Call<StudentDataResponse>, t: Throwable) {
-                    Log.d("student_data", "FAILED!!!!")
-                    Log.d("student_data", t.toString())
-                }
-
-                override fun onResponse(
-                    call: Call<StudentDataResponse>,
-                    response: Response<StudentDataResponse>
-                ) {
-                    Log.d("student_data", response.toString())
-                    Log.d("student_data", response.body().toString())
-
-                    if (response.isSuccessful) {
-                        val studentDataResponse = response.body()
-                        if (studentDataResponse != null) {
-                            sessionManager.setStudentDetails(studentDataResponse)
-                        }
-                    } else {
-                        Log.d("student_data", "Error: ${response.message()}")
-                    }
-                }
-            })
-    }
 }

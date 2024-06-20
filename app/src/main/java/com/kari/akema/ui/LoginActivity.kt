@@ -101,6 +101,33 @@ class LoginActivity : AppCompatActivity() {
         tvRegister.text = text
     }
 
+    private fun fetchStudentData() {
+        apiClient.getApiService().getStudents()
+            .enqueue(object : Callback<StudentDataResponse> {
+                override fun onFailure(call: Call<StudentDataResponse>, t: Throwable) {
+                    Log.d("student_data", "FAILED!!!!")
+                    Log.d("student_data", t.toString())
+                }
+
+                override fun onResponse(
+                    call: Call<StudentDataResponse>,
+                    response: Response<StudentDataResponse>
+                ) {
+                    Log.d("student_data", response.toString())
+                    Log.d("student_data", response.body().toString())
+
+                    if (response.isSuccessful) {
+                        val studentDataResponse = response.body()
+                        if (studentDataResponse != null) {
+                            sessionManager.setStudentDetails(studentDataResponse)
+                        }
+                    } else {
+                        Log.d("student_data", "Error: ${response.message()}")
+                    }
+                }
+            })
+    }
+
     private fun listenLoginButton() {
         val btnLogin : Button = findViewById(R.id.btn_submit_login)
         btnLogin.setOnClickListener{
@@ -126,6 +153,7 @@ class LoginActivity : AppCompatActivity() {
                                 sessionManager.saveAuthToken(token)
                                 Log.d("login", "Token saved: $token")
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                fetchStudentData()
                                 startActivity(intent)
                                 finish()
                             } else {
