@@ -46,6 +46,12 @@ dependencies {
     implementation("androidx.activity:activity:1.8.2")
     implementation("com.xlythe:camera-view:2.0.6")
     implementation("androidx.core:core-splashscreen:1.0.0")
+
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.google.code.gson:gson:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.4.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
