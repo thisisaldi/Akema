@@ -7,7 +7,7 @@ const isSameDay = (date1, date2) => {
 }
 
 const convertTimeToday = (time) => {
-  const timestamp = new Date('2024-09-21T02:30:01.000Z');
+  const timestamp = new Date();
   const [hours, minutes] = time.split(':');
   timestamp.setHours(parseInt(hours, 10), parseInt(minutes, 10), 0, 0);
   

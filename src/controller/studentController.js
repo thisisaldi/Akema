@@ -142,8 +142,7 @@ const present = (req, res) => {
         const course = await Course.findOne({id: courseCode}).select("_id starttime");
         
         const startTime = convertTimeToday(course.starttime);
-        const now = new Date('2024-09-21T02:30:01.000Z');
-        // const now = new Date();
+        const now = new Date();
         const isItToday = isSameDay(now, startTime)
         
         if(!isItToday) {
