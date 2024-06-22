@@ -38,6 +38,10 @@ const courseSchema = new mongoose.Schema({
     ref: "Subject",
   },
   room: String,
+  day: {
+    type: String,
+    enum: ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"]
+  },
   starttime: String,
   endtime: String,
 }, {

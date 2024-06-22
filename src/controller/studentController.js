@@ -2,13 +2,19 @@ const { Student, Course, Attendance } = require("../model/models");
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const getToken = require('../util/token');
-const { convertTimeToday, isSameDay } = require('../util/customFunctions');
-
-const MS_IN_MINUTES = 60000;
+const { convertTimeToday,  checkStatus } = require('../util/customFunctions');
+const { isAttendanceExists, getAttendance, createAttendance } = require('../util/attendanceFunctions');
 
 const login = async (req, res, next) => {
   try {
     const { nim, password } = req.body;
+
+    if (!nim || !password) {
+      return res.status(400).json({
+        status: "Bad Request",
+        message: "Please provide nim and password"
+      })
+    }
 
     const student = await Student.findOne({ nim }, ["nim", "password"])
     
@@ -139,52 +145,43 @@ const present = (req, res) => {
         const student = await Student.findOne({nim: data.nim}).select("_id");
 
         const { courseCode, izinIsTrue } = req.body;
-        const course = await Course.findOne({id: courseCode}).select("_id starttime");
-        
-        const startTime = convertTimeToday(course.starttime);
-        const now = new Date();
-        const isItToday = isSameDay(now, startTime)
-        
-        if(!isItToday) {
-          return res.status(403).json({
-            status: "Forbidden",
-            message: "'You cannot submit at this time. Please try again later.'"
+        if (!courseCode || izinIsTrue === undefined) {
+          return res.status(400).json({
+            status: "Bad Request",
+            message: "Please provide courseCode and izinIsTrue!"
           })
         }
 
-        const isAttendanceDone = await Attendance.findOne({student, course, timestamp: now});
+        const course = await Course.findOne({ id: courseCode }).select("_id day starttime");
+        if (!course) {
+          return res.status(404).json({
+            status: "Bad Request",
+            message: "courseCode is wrong or the course is not found."
+          })
+        }
 
-        if (isAttendanceDone && isItToday) {
+        const startTime = convertTimeToday(course.starttime);
+        const now = new Date();
+
+        if (await isAttendanceExists(now, student, course)) {
           return res.status(409).json({
             status: "Conflict",
             message: "Attendance has already been submitted."
           })
         }
+        
+        const weekday = ["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
+        const isTheDaySame = course.day === weekday[now.getDay()];
+        const status = checkStatus(izinIsTrue, now, startTime);
 
-        const diff = (now - startTime) / MS_IN_MINUTES;
-        let status = "";
-
-        if (izinIsTrue) {
-          status = "izin";
-        } else if (diff >= -30 && diff <= 30) {
-          status = "hadir";
-        } else if (diff > 30 && diff <= 120) {
-          status = "terlambat";
-        } else {
+        if(!isTheDaySame || status === "") {
           return res.status(403).json({
-            status: "SubmissionNotAllowed",
+            status: "Forbidden",
             message: "'You cannot submit at this time. Please try again later.'"
           })
         }
-
-        const attendance = await new Attendance({
-          student: student._id,
-          course: course._id,
-          status,
-          timestamp: now,
-        });
-
-        const result = await Attendance.create(attendance);
+        
+        const result = await createAttendance(student,course, status, now);
 
         return res.status(201).json({
           status: "OK",
@@ -221,30 +218,24 @@ const getStudentAttendanceBySubject = (req, res) => {
         }
         
         const { courseCode } = req.body;
-        let result = {};
 
-        const student = await Student.findOne({nim: data.nim}).select("_id");
-        const course = await Course.findOne({id: courseCode}).select("_id");
+        if (!courseCode) {
+          return res.status(400).json({
+            status: "Bad Request",
+            message: "Please provide courseCode!"
+          })
+        }
 
-        const studentRecords = await Attendance.find({ student, course }, ["status", "timestamp", "-_id"]);
-        result.attendance = studentRecords
-        
-        let attendanceSumResult = await Attendance.aggregate([
-          { 
-            $group : { 
-              _id: "$status", count: { 
-                $sum: 1 
-              } 
-            } 
-          } 
-        ]);
+        const student = await Student.findOne({ nim: data.nim }).select("_id");
+        const course = await Course.findOne({ id: courseCode }).select("_id");
+        if (!course) {
+          return res.status(404).json({
+            status: "Bad Request",
+            message: "courseCode is wrong or the course is not found."
+          })
+        }
 
-        await attendanceSumResult.forEach((data) => {
-          data.category = data._id;
-          delete data._id;
-        });
-
-        result.category = attendanceSumResult;
+        result = await getAttendance(student, course);
         
         return res.status(201).json({
           status: "OK",

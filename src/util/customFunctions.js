@@ -1,11 +1,3 @@
-const isSameDay = (date1, date2) => {
-  return (
-    date1.getFullYear() === date2.getFullYear() &&
-    date1.getMonth() === date2.getMonth() &&
-    date1.getDate() === date2.getDate()
-  );
-}
-
 const convertTimeToday = (time) => {
   const timestamp = new Date();
   const [hours, minutes] = time.split(':');
@@ -16,7 +8,22 @@ const convertTimeToday = (time) => {
   // return timestamp.toLocaleString('en-US', options);
 };
 
+const checkStatus = (izinIsTrue, now, startTime) => {
+  const timeDiff = (now.getMinutes() - startTime.getMinutes());
+  let status = "";
+
+  if (izinIsTrue) {
+    status = "izin";
+  } else if (timeDiff >= -30 && timeDiff <= 30) {
+    status = "hadir";
+  } else if (timeDiff > 30 && timeDiff <= 120) {
+    status = "terlambat";
+  } 
+
+  return status;
+};
+
 module.exports = { 
   convertTimeToday,
-  isSameDay,
+  checkStatus,
 };
