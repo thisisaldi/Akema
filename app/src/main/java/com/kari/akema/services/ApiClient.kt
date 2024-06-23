@@ -1,6 +1,7 @@
 package com.kari.akema.services
 
 import android.content.Context
+import android.util.Log
 import com.kari.akema.Constants
 import com.kari.akema.R
 import okhttp3.Interceptor
@@ -22,49 +23,35 @@ import javax.net.ssl.X509TrustManager
 class ApiClient(private val context: Context) {
     private lateinit var apiService: ApiService
 
-    private fun generateSecureOkHttpClient(context: Context): OkHttpClient {
+    private fun generateInsecureOkHttpClient(): OkHttpClient {
         val httpClientBuilder = OkHttpClient.Builder()
             .readTimeout(60, TimeUnit.SECONDS)
             .connectTimeout(60, TimeUnit.SECONDS)
 
-        val certificateFactory: CertificateFactory = CertificateFactory.getInstance("X.509")
-        val caInput: InputStream = context.resources.openRawResource(R.raw.localhost)
-        val ca: X509Certificate = caInput.use { certificateFactory.generateCertificate(it) as X509Certificate }
-
-        val keyStoreType = KeyStore.getDefaultType()
-        val keyStore: KeyStore = KeyStore.getInstance(keyStoreType).apply {
-            load(null, null)
-            setCertificateEntry("ca", ca)
-        }
-
-        val trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
-        trustManagerFactory.init(keyStore)
-        val trustManagers = trustManagerFactory.trustManagers
-        require(trustManagers.size == 1 && trustManagers[0] is X509TrustManager) {
-            "Unexpected default trust managers: ${trustManagers.contentToString()}"
-        }
-        val trustManager = trustManagers[0] as X509TrustManager
+        val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
+            override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) {}
+            override fun checkServerTrusted(chain: Array<out X509Certificate>?, authType: String?) {}
+            override fun getAcceptedIssuers(): Array<X509Certificate> = arrayOf()
+        })
 
         val sslContext = SSLContext.getInstance("TLS")
-        sslContext.init(null, arrayOf(trustManager), SecureRandom())
+        sslContext.init(null, trustAllCerts, SecureRandom())
 
         val hostnameVerifier = HostnameVerifier { _, _ -> true }
 
         return httpClientBuilder
-            .sslSocketFactory(sslContext.socketFactory, trustManager)
-            .hostnameVerifier(hostnameVerifier) // Disable hostname verification
+            .sslSocketFactory(sslContext.socketFactory, trustAllCerts[0] as X509TrustManager)
+            .hostnameVerifier(hostnameVerifier)
             .build()
     }
 
-
     fun getApiService(): ApiService {
-        // Initialize ApiService if not initialized yet
         if (!::apiService.isInitialized) {
-            val httpClientBuilder = generateSecureOkHttpClient(context).newBuilder()
+            val httpClientBuilder = generateInsecureOkHttpClient().newBuilder()
             httpClientBuilder.addInterceptor(AddCookiesInterceptor(context))
 
             val retrofit = Retrofit.Builder()
-                .baseUrl(Constants.DEV_URL)
+                .baseUrl(Constants.PROD_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClientBuilder.build())
                 .build()
