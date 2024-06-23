@@ -1,10 +1,8 @@
-const { Attendance } = require('../model/models');
+const { Attendance, Course, Student } = require('../model/models');
+const { getStartEndofDay } = require('../util/customFunctions');
 
 const isAttendanceExists = async (now, student, course) => {
-  const startOfDay = new Date(now);
-  const endOfDay = new Date(now);
-  startOfDay.setUTCHours(0, 0, 0, 0);
-  endOfDay.setUTCHours(23, 59, 59, 999);
+  const [startOfDay, endOfDay] = getStartEndofDay(now)
 
   const todayAttendanceTimestamp = (await Attendance.findOne({student, course, 
     timestamp: { 
@@ -64,5 +62,5 @@ const getAttendance = async (student, course) => {
 module.exports = {
   isAttendanceExists,
   getAttendance,
-  createAttendance
+  createAttendance,
 }
