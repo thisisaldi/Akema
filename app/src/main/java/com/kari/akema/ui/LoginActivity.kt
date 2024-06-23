@@ -20,11 +20,14 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.kari.akema.R
-import com.kari.akema.models.LoginRequest
-import com.kari.akema.models.LoginResponse
+import com.kari.akema.models.auth.LoginRequest
+import com.kari.akema.models.auth.LoginResponse
 import com.kari.akema.models.StudentDataResponse
 import com.kari.akema.services.ApiClient
 import com.kari.akema.services.SessionManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -56,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun displayTextViewInitialize() {
-        val tvTitle : TextView = findViewById(R.id.tv_title)
+        val tvTitle: TextView = findViewById(R.id.tv_title)
         val text = SpannableStringBuilder("Selamat Datang 👋 \ndi Akema App")
         val color = ResourcesCompat.getColor(getResources(), R.color.orange, null)
 
@@ -76,14 +79,15 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun displayRegisterInitialize() {
-        val tvRegister : TextView = findViewById(R.id.tv_redirect_register)
+        val tvRegister: TextView = findViewById(R.id.tv_redirect_register)
         val text = SpannableStringBuilder("Belum punya akun? Daftar")
         val color = ResourcesCompat.getColor(getResources(), R.color.orange, null)
 
         text.setSpan(
             ForegroundColorSpan(color),
             18, text.length,
-            Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+            Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+        )
 
         val clickSpan: ClickableSpan = object : ClickableSpan() {
             override fun onClick(p0: View) {
@@ -93,81 +97,98 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        text.setSpan(clickSpan,
+        text.setSpan(
+            clickSpan,
             18, text.length,
-            Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+            Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+        )
 
         tvRegister.movementMethod = LinkMovementMethod.getInstance()
         tvRegister.text = text
     }
 
-    private fun fetchStudentData() {
-        apiClient.getApiService().getStudents()
-            .enqueue(object : Callback<StudentDataResponse> {
-                override fun onFailure(call: Call<StudentDataResponse>, t: Throwable) {
-                    Log.d("student_data", "FAILED!!!!")
-                    Log.d("student_data", t.toString())
+    private suspend fun fetchStudentData() {
+        try {
+            val response = apiClient.getApiService().getStudent()
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    sessionManager.setStudentDetails(it)
+                } ?: run {
+                    Log.e("student_data", "Response body is null")
+                }
+            } else {
+                Log.e("student_data", "Error: ${response.message()}")
+            }
+        } catch (t: Throwable) {
+            Log.e("student_data", "FAILED!!!!")
+            Log.e("student_data", t.toString())
+        }
+    }
+
+    private fun listenLoginButton() {
+        val btnLogin: Button = findViewById(R.id.btn_submit_login)
+        btnLogin.setOnClickListener {
+            performLogin()
+        }
+    }
+
+    private fun performLogin() {
+        Log.d("login", "start_login")
+        val nimText = nimEt.text.toString()
+        Log.d("login", "NIM: $nimText")
+        val passwordText = passwordEt.text.toString()
+        Log.d("login", "password: $passwordText")
+
+        apiClient.getApiService().login(LoginRequest(nim = nimText, password = passwordText))
+            .enqueue(object : Callback<LoginResponse> {
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                    handleLoginFailure(t)
                 }
 
                 override fun onResponse(
-                    call: Call<StudentDataResponse>,
-                    response: Response<StudentDataResponse>
+                    call: Call<LoginResponse>,
+                    response: Response<LoginResponse>
                 ) {
-                    Log.d("student_data", response.toString())
-                    Log.d("student_data", response.body().toString())
-
-                    if (response.isSuccessful) {
-                        val studentDataResponse = response.body()
-                        if (studentDataResponse != null) {
-                            sessionManager.setStudentDetails(studentDataResponse)
-                        }
-                    } else {
-                        Log.d("student_data", "Error: ${response.message()}")
-                    }
+                    handleLoginResponse(response)
                 }
             })
     }
 
-    private fun listenLoginButton() {
-        val btnLogin : Button = findViewById(R.id.btn_submit_login)
-        btnLogin.setOnClickListener{
-            Log.d("login", "start_login")
-            var nimText = nimEt.text.toString()
-            Log.d("login", "NIM: $nimText")
-            var passwordText = passwordEt.text.toString()
-            Log.d("login", "password: $passwordText")
-            apiClient.getApiService().login(LoginRequest(nim = nimText, password = passwordText))
-                .enqueue(object : Callback<LoginResponse> {
-                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                        Log.d("login", "FAILED!!!!")
-                        Log.d("login", t.toString())
-                    }
-
-                    override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                        val loginResponse = response.body()
-                        Log.d("login", loginResponse.toString())
-                        if (response.isSuccessful) {
-                            val cookieList: List<String> = response.headers().values("Set-Cookie")
-                            val token: String = cookieList[0].split(";")[0].split("=")[1]
-                            if (token != null) {
-                                sessionManager.saveAuthToken(token)
-                                Log.d("login", "Token saved: $token")
-                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                fetchStudentData()
-                                startActivity(intent)
-                                finish()
-                            } else {
-                                Log.e("login", "Failed to retrieve token from cookies")
-                                // Handle token retrieval failure
-                            }
-                        } else {
-//                         Error logging in
-                        }
-                    }
-                })
-        }
+    private fun handleLoginFailure(t: Throwable) {
+        Log.d("login", "FAILED!!!!")
+        Log.d("login", t.toString())
     }
 
+    private fun handleLoginResponse(response: Response<LoginResponse>) {
+        val loginResponse = response.body()
+        Log.d("login", loginResponse.toString())
+        if (!response.isSuccessful) {
+            Log.e("login", "Error logging in: ${response.errorBody()?.string()}")
+            return
+        }
+        val cookieList: List<String> = response.headers().values("Set-Cookie")
+        val token = extractTokenFromCookies(cookieList)
+        if (token != null) {
+            sessionManager.saveAuthToken(token)
+            CoroutineScope(Dispatchers.Main).launch {
+                fetchStudentData()
+                Log.d("login", "Token saved: $token")
+                navigateToMainActivity()
+            }
+        } else {
+            Log.e("login", "Failed to retrieve token from cookies")
+            // Handle token retrieval failure
+        }
 
+    }
 
+    private fun extractTokenFromCookies(cookieList: List<String>): String? {
+        return cookieList.firstOrNull()?.split(";")?.get(0)?.split("=")?.get(1)
+    }
+
+    private fun navigateToMainActivity() {
+        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

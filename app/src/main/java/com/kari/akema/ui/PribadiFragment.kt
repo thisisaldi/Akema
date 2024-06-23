@@ -1,6 +1,5 @@
 package com.kari.akema.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,15 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.kari.akema.R
-import com.kari.akema.models.LoginRequest
-import com.kari.akema.models.LoginResponse
-import com.kari.akema.models.Student
-import com.kari.akema.models.StudentDataResponse
 import com.kari.akema.services.ApiClient
 import com.kari.akema.services.SessionManager
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class PribadiFragment : Fragment() {
     private lateinit var rootView: View

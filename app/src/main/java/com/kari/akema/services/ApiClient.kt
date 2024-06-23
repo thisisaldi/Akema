@@ -29,8 +29,7 @@ class ApiClient(private val context: Context) {
 
         val certificateFactory: CertificateFactory = CertificateFactory.getInstance("X.509")
         val caInput: InputStream = context.resources.openRawResource(R.raw.localhost)
-        val ca: X509Certificate =
-            caInput.use { certificateFactory.generateCertificate(it) as X509Certificate }
+        val ca: X509Certificate = caInput.use { certificateFactory.generateCertificate(it) as X509Certificate }
 
         val keyStoreType = KeyStore.getDefaultType()
         val keyStore: KeyStore = KeyStore.getInstance(keyStoreType).apply {
@@ -38,8 +37,7 @@ class ApiClient(private val context: Context) {
             setCertificateEntry("ca", ca)
         }
 
-        val trustManagerFactory =
-            TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
+        val trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
         trustManagerFactory.init(keyStore)
         val trustManagers = trustManagerFactory.trustManagers
         require(trustManagers.size == 1 && trustManagers[0] is X509TrustManager) {
@@ -61,21 +59,6 @@ class ApiClient(private val context: Context) {
 
     fun getApiService(): ApiService {
         // Initialize ApiService if not initialized yet
-        if (!::apiService.isInitialized) {
-            val httpClientBuilder = generateSecureOkHttpClient(context).newBuilder()
-            httpClientBuilder.addInterceptor(AddCookiesInterceptor(context))
-
-            val retrofit = Retrofit.Builder()
-                .baseUrl(Constants.DEV_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClientBuilder.build())
-                .build()
-
-            apiService = retrofit.create(ApiService::class.java)
-        }
-
-        return apiService
-    }fun getApiService(context: Context): ApiService {
         if (!::apiService.isInitialized) {
             val httpClientBuilder = generateSecureOkHttpClient(context).newBuilder()
             httpClientBuilder.addInterceptor(AddCookiesInterceptor(context))

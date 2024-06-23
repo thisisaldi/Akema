@@ -22,15 +22,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         apiClient = ApiClient(this)
         sessionManager = SessionManager(this)
+        val studentData: HashMap<String, String> = sessionManager.getStudentDetails()
+        Log.d("login", studentData.toString())
 
         val navView: BottomNavigationView = findViewById(R.id.bottom_navigation)
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
-        bottomNavigationViewInitialize()
         replaceFragment(PresensiFragment())
+        bottomNavigationViewInitialize()
     }
 
     private fun bottomNavigationViewInitialize() {

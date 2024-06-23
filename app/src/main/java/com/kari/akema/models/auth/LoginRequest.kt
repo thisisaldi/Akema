@@ -1,4 +1,4 @@
-package com.kari.akema.models
+package com.kari.akema.models.auth
 
 import com.google.gson.annotations.SerializedName
 

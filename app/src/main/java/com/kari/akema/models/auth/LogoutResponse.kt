@@ -1,8 +1,8 @@
-package com.kari.akema.models
+package com.kari.akema.models.auth
 
 import com.google.gson.annotations.SerializedName
 
-data class LoginResponse (
+data class LogoutResponse (
     @SerializedName("status")
     var status: String,
 

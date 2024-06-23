@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +14,18 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.kari.akema.R
+import com.kari.akema.models.auth.LogoutResponse
+import com.kari.akema.services.ApiClient
 import com.kari.akema.services.SessionManager
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ProfileFragment : Fragment() {
     private lateinit var view: View
     private lateinit var sessionManager: SessionManager
+
+    private lateinit var apiClient: ApiClient
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +40,7 @@ class ProfileFragment : Fragment() {
         val buttonEditProfile = view.findViewById<Button>(R.id.edit_profile_button)
         val nameTv = view.findViewById<TextView>(R.id.full_name)
 
+        apiClient = ApiClient(requireContext())
         sessionManager = SessionManager(requireContext())
         val studentData: HashMap<String, String> = sessionManager.getStudentDetails()
 
@@ -71,10 +80,32 @@ class ProfileFragment : Fragment() {
         tvMessage.text = message
 
         btnLogout.setOnClickListener {
-            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            apiClient.getApiService().logout()
+                .enqueue(object : Callback<LogoutResponse> {
+                    override fun onFailure(call: Call<LogoutResponse>, t: Throwable) {
+                        Log.d("logout", "FAILED!!!!")
+                        Log.d("logout", t.toString())
+                    }
+
+                    override fun onResponse(
+                        call: Call<LogoutResponse>,
+                        response: Response<LogoutResponse>
+                    ) {
+                        val loginResponse = response.body()
+                        Log.d("logout", loginResponse.toString())
+                        if (!response.isSuccessful) {
+                            Log.e("logout", "Failed to retrieve token from cookies")
+                            return
+                        }
+                        Log.d("logout", "Token deleted")
+                        val intent = Intent(requireContext(), LoginActivity::class.java)
+                        sessionManager.clear()
+                        startActivity(intent)
+                    }
+                })
         }
 
-        btnBatal.setOnClickListener {
+        btnBatal.setOnClickListener{
             dialog.dismiss()
         }
 
