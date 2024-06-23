@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const rateLimit = require('express-rate-limit');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
@@ -13,6 +14,14 @@ const studentRouter = require('./src/router/studentRouter');
 
 const app = express();
 
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minutes
+  max: 100, // 100 requests max
+  message: 'Too many requests from this IP, please try again after 1 minutes',
+  headers: true, 
+});
+
+app.use(limiter);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
