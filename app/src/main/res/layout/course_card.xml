@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <LinearLayout
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card_border"
+    android:backgroundTint="@color/blurgrey"
+    android:fontFamily="@font/lexend"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:paddingEnd="32dp"
+    tools:ignore="RtlSymmetry">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center_vertical">
+
+      <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/rounded_bg"
+        android:padding="5dp"
+        android:src="@drawable/presence"
+        app:backgroundTint="@color/blurgrey" />
+
+      <Space
+        android:layout_width="8dp"
+        android:layout_height="match_parent" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Masuk"
+        android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <TextView
+      android:id="@+id/start_text"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginVertical="8dp"
+      android:text="@string/waktu_mulai"
+      android:textSize="24sp"
+      android:textStyle="bold" />
+
+    <TextView
+      android:id="@+id/course_text"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:ellipsize="end"
+      android:maxLines="1"
+      android:text="@string/mata_kuliah"
+      android:textSize="16sp" />
+    />
+  </LinearLayout>
+</LinearLayout>

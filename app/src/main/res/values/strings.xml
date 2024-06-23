@@ -13,4 +13,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="notification_title">Notifikasi</string>
     <string name="password">⚫ ⚫ ⚫ ⚫ ⚫ ⚫ ⚫ ⚫ ⚫ ⚫ ⚫</string>
+  <string name="mata_kuliah">Pemprograman Mobile</string>
+    <string name="waktu_mulai">09:30</string>
 </resources>

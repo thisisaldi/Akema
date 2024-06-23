@@ -2,7 +2,7 @@ package com.kari.akema.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Student (
+data class Student(
     @SerializedName("_id")
     var id: String,
 
@@ -19,5 +19,8 @@ data class Student (
     var address: String,
 
     @SerializedName("classOf")
-    var classOf: Int
+    var classOf: Int,
+
+    @SerializedName("courses")
+    var courses: List<Course>
 )

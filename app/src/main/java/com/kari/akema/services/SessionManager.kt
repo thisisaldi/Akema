@@ -38,11 +38,12 @@ class SessionManager(context: Context) {
     fun getStudentDetails(): HashMap<String, String> {
         val student = HashMap<String, String>()
 
-        student["name"] = prefs.getString(STUDENT_NAME, null).toString()
-        student["nim"] = prefs.getString(STUDENT_NIM, null).toString()
-        student["email"] = prefs.getString(STUDENT_EMAIL, null).toString()
-        student["address"] = prefs.getString(STUDENT_ADDRESS, null).toString()
-        student["classOf"] = prefs.getString(STUDENT_CLASS, null).toString()
+        student[STUDENT_NAME] = prefs.getString(STUDENT_NAME, null).toString()
+        student[STUDENT_NIM] = prefs.getString(STUDENT_NIM, null).toString()
+        student[STUDENT_EMAIL] = prefs.getString(STUDENT_EMAIL, null).toString()
+        student[STUDENT_ADDRESS] = prefs.getString(STUDENT_ADDRESS, null).toString()
+        student[STUDENT_CLASS] = prefs.getString(STUDENT_CLASS, null).toString()
+
 
         return student
     }
