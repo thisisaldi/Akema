@@ -157,7 +157,7 @@ const present = (req, res) => {
           return res.status(404).json({
             status: "Bad Request",
             message: "courseCode is wrong or the course is not found."
-          })
+          });
         }
 
         const startTime = convertTimeToday(course.starttime);
@@ -217,7 +217,7 @@ const getStudentAttendanceBySubject = (req, res) => {
           })
         }
         
-        const { courseCode } = req.body;
+        const { courseCode } = req.query;
 
         if (!courseCode) {
           return res.status(400).json({
