@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
@@ -133,6 +134,8 @@ class LoginActivity : AppCompatActivity() {
         Log.d("login", loginResponse.toString())
         if (!response.isSuccessful) {
             Log.e("login", "Error logging in: ${response.errorBody()?.string()}")
+            val errorMessage = response.message() ?: "Unknown error"
+            showToast("Gagal login: NIM atau password salah")
             return
         }
         val cookieList: List<String> = response.headers().values("Set-Cookie")
@@ -146,9 +149,13 @@ class LoginActivity : AppCompatActivity() {
             }
         } else {
             Log.e("login", "Failed to retrieve token from cookies")
-            // Handle token retrieval failure
         }
+    }
 
+    private fun showToast(message: String) {
+        CoroutineScope(Dispatchers.Main).launch {
+            Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun extractTokenFromCookies(cookieList: List<String>): String? {

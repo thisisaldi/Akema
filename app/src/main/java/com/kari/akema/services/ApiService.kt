@@ -33,6 +33,6 @@ interface ApiService {
         @Body request: PresentRequest
     ): PresentResponse
 
-    @HTTP(method = "GET", path = "/attendance", hasBody = true)
-    fun getAttendance(@Body request: AttendanceRequest): Response<AttendanceResponse>
+    @GET("/attendance")
+    suspend fun getAttendance(@Query("courseCode") courseCode: String): Response<AttendanceResponse>
 }

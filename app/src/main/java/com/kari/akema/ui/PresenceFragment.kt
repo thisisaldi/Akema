@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kari.akema.R
 import com.kari.akema.models.student.Course
@@ -79,19 +80,31 @@ class PresenceFragment : BottomSheetDialogFragment() {
         return view
     }
 
-    private suspend fun handleAttendance(izin: Boolean): PresentResponse? {
-        return try {
-            val response = arguments?.getString(CODE)?.let { PresentRequest(code = it, izin = izin) }?.let {
-                apiClient.getApiService().present(it)
+    private fun showToast(message: String) {
+        CoroutineScope(Dispatchers.Main).launch {
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private suspend fun handleAttendance(izin: Boolean) {
+        try {
+            val code = arguments?.getString(CODE)
+            if (code != null) {
+                val request = PresentRequest(code = code, izin = izin)
+                val response = apiClient.getApiService().present(request)
+                if (response != null) {
+                    showToast(response.status + ":  " + response.message)
+                } else {
+                    showToast("Gagal melakukan tindakan")
+                }
+            } else {
+                showToast("Gagal melakukan tindakan")
             }
-            Log.d("present", response.toString())
-            response
         } catch (e: Exception) {
-            Log.d("present", "FAILED!!!!")
-            Log.d("present", e.toString())
-            null
+            Log.e("Attendance", "Failed to handle attendance", e)
+            showToast("Terjadi kesalahan")
         } finally {
-            Log.d("present", "Fragment dismissed")
+            Log.d("Attendance", "Fragment dismissed")
             dismiss()
         }
     }

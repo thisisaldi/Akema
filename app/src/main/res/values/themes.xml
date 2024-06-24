@@ -7,6 +7,9 @@
     <item name="android:textColor">@color/black</item>
     <item name="android:statusBarColor">@color/white</item>
     <item name="android:windowSplashScreenBackground">@color/white</item>
+    <item name="android:windowSplashScreenAnimationDuration">1000</item>
+    <item name="android:windowSplashScreenAnimatedIcon">@mipmap/logo_icon_foreground</item>
+    <item name="android:windowSplashScreenIconBackgroundColor">@color/white</item>
   </style>
 
   <style name="Theme.Akema" parent="Base.Theme.Akema" />
