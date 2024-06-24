@@ -7,12 +7,8 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import com.kari.akema.R
-import com.kari.akema.models.StudentDataResponse
 import com.kari.akema.services.ApiClient
 import com.kari.akema.services.SessionManager
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private lateinit var apiClient: ApiClient

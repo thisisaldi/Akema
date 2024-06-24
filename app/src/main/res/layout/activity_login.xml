@@ -73,14 +73,17 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-      style="@style/Widget.Material3.Button.TextButton"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="end"
-      android:layout_marginBottom="@dimen/activity_vertical_margin"
-      android:text="Lupa Password?"
-      android:textColor="@color/grey" />
+    <!--    <Button-->
+    <!--      style="@style/Widget.Material3.Button.TextButton"-->
+    <!--      android:layout_width="wrap_content"-->
+    <!--      android:layout_height="wrap_content"-->
+    <!--      android:layout_gravity="end"-->
+    <!--      android:layout_marginBottom="@dimen/activity_vertical_margin"-->
+    <!--      android:text="Lupa Password?"-->
+    <!--      android:textColor="@color/grey" />-->
+    <Space
+      android:layout_width="match_parent"
+      android:layout_height="32dp" />
 
     <Button
       android:id="@+id/btn_submit_login"
@@ -93,21 +96,5 @@
 
   </LinearLayout>
 
-  <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="24dp"
-    android:orientation="vertical"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toStartOf="parent">
-
-    <TextView
-      android:id="@+id/tv_redirect_register"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:text="Belum punya akun? Daftar" />
-
-  </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

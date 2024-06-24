@@ -81,7 +81,7 @@
       <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Kehadiran Hari Ini"
+        android:text="Perkuliahan Hari Ini"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -99,28 +99,27 @@
         android:textSize="16sp" />
     </LinearLayout>
 
-    <HorizontalScrollView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:scrollbars="none">
+    <!--    <HorizontalScrollView-->
+    <!--      android:layout_width="match_parent"-->
+    <!--      android:layout_height="wrap_content"-->
+    <!--      android:scrollbars="none">-->
 
-      <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_courses"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none"
-        tools:listitem="@layout/course_card" />
-    </HorizontalScrollView>
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/rv_courses"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:scrollbars="none" />
 
     <Space
       android:layout_width="match_parent"
       android:layout_height="24dp" />
 
     <LinearLayout
+      android:id="@+id/isi_presensi_card"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@drawable/rounded_bg"
+      android:background="@drawable/rounded_bg_gray"
       android:gravity="center"
       android:orientation="vertical"
       android:padding="24dp">
@@ -128,53 +127,41 @@
       <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Izin Absen"
-        android:textColor="@color/blurgrey"
+        android:text="Isi Presensi"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold" />
 
       <TextView
+        android:id="@+id/mata_kuliah_sekarang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Isi form untuk meminta izin absen"
+        android:text="Tidak ada mata kuliah yang sedang berlangsung"
         android:textColor="@color/blurgrey"
-        android:textSize="16sp" />
+        android:textSize="12sp" />
 
       <Space
         android:layout_width="match_parent"
         android:layout_height="24dp" />
 
       <Button
-        android:id="@+id/izin_button"
+        android:id="@+id/presence_button"
         style="@style/SecondaryButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/pengajuan_izin"
+        android:text="Tekan untuk Presensi Masuk"
         android:textColor="@color/black100"
         android:textStyle="bold"
         app:backgroundTint="@color/white" />
 
     </LinearLayout>
-  </LinearLayout>
 
-  <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:layout_constraintBottom_toBottomOf="parent">
-
-    <Button
-      android:id="@+id/presence_button"
-      style="@style/PrimaryButton"
+    <Space
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginHorizontal="24dp"
-      android:layout_marginVertical="24dp"
-      android:layout_marginBottom="24dp"
-      android:paddingVertical="16dp"
-      android:text="Tekan untuk Presensi Masuk"
-      android:textSize="16dp"
-      app:backgroundTint="@color/orange"
-      app:layout_constraintBottom_toBottomOf="parent" />
+      android:layout_height="32dp" />
+
+
   </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

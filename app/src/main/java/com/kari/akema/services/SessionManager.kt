@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import com.kari.akema.R
-import com.kari.akema.models.Student
-import com.kari.akema.models.StudentDataResponse
+import com.kari.akema.models.student.Student
+import com.kari.akema.models.student.StudentDataResponse
 
 
 class SessionManager(context: Context) {

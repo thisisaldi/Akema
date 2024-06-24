@@ -8,13 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.kari.akema.R
-import com.kari.akema.models.Student
-import com.kari.akema.models.StudentDataResponse
 import com.kari.akema.services.ApiClient
 import com.kari.akema.services.SessionManager
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class DataSiswaFragment : Fragment() {
     private lateinit var rootView: View

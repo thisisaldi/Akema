@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kari.akema.R
-import com.kari.akema.models.Course
+import com.kari.akema.models.student.Course
 
 class CourseAdapter(private val courses: List<Course>) :
     RecyclerView.Adapter<CourseAdapter.CourseViewHolder>() {

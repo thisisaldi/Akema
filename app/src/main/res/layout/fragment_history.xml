@@ -64,6 +64,7 @@
             android:textStyle="bold" />
 
           <TextView
+            android:id="@+id/jumlah_izin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="12dp"
@@ -94,6 +95,7 @@
             android:textStyle="bold" />
 
           <TextView
+            android:id="@+id/jumlah_hadir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="12dp"
@@ -131,6 +133,7 @@
             android:textStyle="bold" />
 
           <TextView
+            android:id="@+id/jumlah_sakit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="12dp"
@@ -161,6 +164,7 @@
             android:textStyle="bold" />
 
           <TextView
+            android:id="@+id/jumlah_alpa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="12dp"
@@ -172,18 +176,22 @@
 
       </LinearLayout>
 
-      <CalendarView
-        android:id="@+id/presence_history_calendar"
+      <Space
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:dateTextAppearance="@style/CalenderViewDateCustomText"
-        android:theme="@style/CalenderViewCustom"
-        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText" />
+        android:layout_height="24dp" />
+      <!--      <CalendarView-->
+      <!--        android:id="@+id/presence_history_calendar"-->
+      <!--        android:layout_width="match_parent"-->
+      <!--        android:layout_height="wrap_content"-->
+      <!--        android:dateTextAppearance="@style/CalenderViewDateCustomText"-->
+      <!--        android:theme="@style/CalenderViewCustom"-->
+      <!--        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText" />-->
 
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="12dp">
+        android:layout_marginVertical="12dp"
+        tools:ignore="MissingConstraints">
 
         <TextView
           android:layout_width="wrap_content"
@@ -206,18 +214,13 @@
           android:textSize="16sp" />
       </LinearLayout>
 
-      <LinearLayout
-        android:layout_width="match_parent"
+      <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_history"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-          android:layout_width="match_parent"
-          android:layout_height="160dp"
-          android:textAlignment="center"
-          android:gravity="center"
-          android:text="Aktivitas anda masih kosong :(" />
-      </LinearLayout>
+        android:orientation="vertical"
+        android:scrollbars="none"
+        />
     </LinearLayout>
   </ScrollView>
 

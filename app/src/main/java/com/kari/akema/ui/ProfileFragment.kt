@@ -36,8 +36,8 @@ class ProfileFragment : Fragment() {
 
         val buttonLogout = view.findViewById<Button>(R.id.logout_button)
         val buttonProfileLengkap = view.findViewById<Button>(R.id.button_profile_lengkap)
-        val buttonChangePassword = view.findViewById<Button>(R.id.change_password_button)
-        val buttonEditProfile = view.findViewById<Button>(R.id.edit_profile_button)
+//        val buttonChangePassword = view.findViewById<Button>(R.id.change_password_button)
+//        val buttonEditProfile = view.findViewById<Button>(R.id.edit_profile_button)
         val nameTv = view.findViewById<TextView>(R.id.full_name)
 
         apiClient = ApiClient(requireContext())
@@ -55,13 +55,13 @@ class ProfileFragment : Fragment() {
             startActivity(Intent(requireContext(), ProfileLengkapActivity::class.java))
         }
 
-        buttonChangePassword.setOnClickListener {
-            startActivity(Intent(requireContext(), GantiPasswordActivity::class.java))
-        }
+//        buttonChangePassword.setOnClickListener {
+//            startActivity(Intent(requireContext(), GantiPasswordActivity::class.java))
+//        }
 
-        buttonEditProfile.setOnClickListener {
-            startActivity(Intent(requireContext(), EditProfileActivity::class.java))
-        }
+//        buttonEditProfile.setOnClickListener {
+//            startActivity(Intent(requireContext(), EditProfileActivity::class.java))
+//        }
 
         return view
     }

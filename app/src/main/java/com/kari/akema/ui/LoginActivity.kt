@@ -22,7 +22,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.kari.akema.R
 import com.kari.akema.models.auth.LoginRequest
 import com.kari.akema.models.auth.LoginResponse
-import com.kari.akema.models.StudentDataResponse
 import com.kari.akema.services.ApiClient
 import com.kari.akema.services.SessionManager
 import kotlinx.coroutines.CoroutineScope
@@ -54,7 +53,6 @@ class LoginActivity : AppCompatActivity() {
         sessionManager = SessionManager(this)
 
         displayTextViewInitialize()
-        displayRegisterInitialize()
         listenLoginButton()
     }
 
@@ -76,35 +74,6 @@ class LoginActivity : AppCompatActivity() {
         )
 
         tvTitle.text = text
-    }
-
-    private fun displayRegisterInitialize() {
-        val tvRegister: TextView = findViewById(R.id.tv_redirect_register)
-        val text = SpannableStringBuilder("Belum punya akun? Daftar")
-        val color = ResourcesCompat.getColor(getResources(), R.color.orange, null)
-
-        text.setSpan(
-            ForegroundColorSpan(color),
-            18, text.length,
-            Spannable.SPAN_EXCLUSIVE_INCLUSIVE
-        )
-
-        val clickSpan: ClickableSpan = object : ClickableSpan() {
-            override fun onClick(p0: View) {
-                val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        }
-
-        text.setSpan(
-            clickSpan,
-            18, text.length,
-            Spannable.SPAN_EXCLUSIVE_INCLUSIVE
-        )
-
-        tvRegister.movementMethod = LinkMovementMethod.getInstance()
-        tvRegister.text = text
     }
 
     private suspend fun fetchStudentData() {

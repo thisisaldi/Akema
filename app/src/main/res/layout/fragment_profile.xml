@@ -40,17 +40,17 @@
         android:textSize="18sp" />
 
     <!-- Tombol Edit Profile -->
-    <Button
-        android:id="@+id/edit_profile_button"
-        style="@style/PrimaryButton"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:paddingVertical="16dp"
-        android:text="Edit Profle"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp"
-        app:backgroundTint="@color/orange" />
+<!--    <Button-->
+<!--        android:id="@+id/edit_profile_button"-->
+<!--        style="@style/PrimaryButton"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:paddingVertical="16dp"-->
+<!--        android:text="Edit Profle"-->
+<!--        android:textSize="16sp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        app:backgroundTint="@color/orange" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -72,14 +72,14 @@
                 android:drawableRight="@drawable/ic_arrow_forward"/>
 
             <!-- Change Password -->
-            <Button
-                android:id="@+id/change_password_button"
-                style="@style/ButtonWithIcon"
-                android:layout_marginTop="16dp"
-                android:drawableLeft="@drawable/profile_lock"
-                android:gravity=""
-                android:text="Ganti Password"
-                android:drawableRight="@drawable/ic_arrow_forward"/>
+<!--            <Button-->
+<!--                android:id="@+id/change_password_button"-->
+<!--                style="@style/ButtonWithIcon"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:drawableLeft="@drawable/profile_lock"-->
+<!--                android:gravity=""-->
+<!--                android:text="Ganti Password"-->
+<!--                android:drawableRight="@drawable/ic_arrow_forward"/>-->
 
             <!-- Logout -->
             <Button
